@@ -10,8 +10,8 @@ This repository provides a comprehensive suite of Python scripts designed to aut
       * **2-5 Pipeline:** Already supported STL to DXF slices (raw, cleaned, and machine-ready).
   * **Support Generation:** Generates block support structures for STL models based on overhang angles.
 
-    <img src="images/Block.PNG" alt="Exemplo de Block Gerada" style="width: 33%; height: auto; aspect-ratio: 4 / 3; object-fit: cover;">
-    <img src="images/Mesh.PNG" alt="Exemplo de Malha Gerada" style="width: 33%; height: auto; aspect-ratio: 4 / 3; object-fit: cover;">
+    <img src="images/Block.PNG" alt="Exemplo de Block Gerada" style="width: 40%; height: auto; aspect-ratio: 4 / 3; object-fit: cover;">
+    <img src="images/Mesh.PNG" alt="Exemplo de Malha Gerada" style="width: 40%; height: auto; aspect-ratio: 4 / 3; object-fit: cover;">
 
   * **Slicing:** Slices 3D models (with or without supports) into 2D layers and exports them as individual DXF files.
 
