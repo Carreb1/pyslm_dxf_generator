@@ -94,7 +94,7 @@ def get_pyslm_support_generator():
     supportGenerator.supportTeethBottomLength = 0.3
 
     supportGenerator.splineSimplificationFactor = 10
-    supportGenerator.gridSpacing = [2.5, 2.5]
+    supportGenerator.gridSpacing = [.5, .5]
     return supportGenerator
 
 # --- Auxiliary DXF/Geometry Functions ---
@@ -386,7 +386,7 @@ def _slice_and_export_dxf_layers(part_to_slice: Part, supports_to_slice: list, o
 
         if current_layer.geometry:
             all_layers_combined.append(current_layer)
-            dxf_name = output_dxf_bruto_folder / f"{model_name}_layer{layer_idx}_{current_layer.z}.dxf"
+            dxf_name = output_dxf_bruto_folder / f"{model_name}_layer{layer_idx}.dxf"
             export_layer_to_dxf(current_layer, dxf_name)
         layer_idx += 1
 
