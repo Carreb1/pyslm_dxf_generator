@@ -59,14 +59,13 @@ def load_supported_stl(model_name: str) -> Part:
     """
     print(f"\n--- Block 2: Reading Already Supported STL for '{model_name}.stl' ---")
     supported_stl_path = BASE_MODELS_ORIGINAL_SUPORTE / f"{model_name}.stl"
-    print(f"Loading supported STL from: {supported_stl_path}")
     if not supported_stl_path.exists():
         raise FileNotFoundError(f"Error: Supported STL file '{supported_stl_path}' not found.")
 
-    supported_part = Part(model_name)
-    supported_part.setGeometry(str(supported_stl_path), fixGeometry=True)
     # Apply rotation and scale factor also to supported parts if needed,
     # assuming they might be positioned differently or need scaling.
+    supported_part = Part(model_name)
+    supported_part.setGeometry(str(supported_stl_path), fixGeometry=True)
     supported_part.rotation = PART_ROTATION # Defined in modules\parameters.py
     supported_part.scaleFactor = PART_SCALE_FACTOR # Defined in modules\parameters.py
     supported_part.dropToPlatform() # Adjust as needed for your specific STL positioning
