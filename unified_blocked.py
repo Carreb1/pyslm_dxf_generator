@@ -16,8 +16,8 @@ from modules.parameters import (
     BASE_MODELS_ORIGINAL_SUPORTE,
     BASE_DXFS_PATH,
     get_pyslm_support_generator,
-    PART_ROTATION, # New import
-    PART_SCALE_FACTOR # New import
+    PART_ROTATION, 
+    PART_SCALE_FACTOR 
 )
 from modules.geometry_processing import (
     slice_and_export_raw_dxfs,
@@ -27,6 +27,7 @@ from modules.geometry_processing import (
 )
 
 # --- Logging Configuration ---
+# Helps with the visualization in the cmd
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger('ezdxf').setLevel(logging.ERROR)
 
@@ -44,9 +45,10 @@ def load_original_stl(model_name: str) -> Part:
 
     myPart = Part('Peca')
     myPart.setGeometry(str(original_file_path), fixGeometry=True)
-    myPart.rotation = PART_ROTATION # Using constant
-    myPart.scaleFactor = PART_SCALE_FACTOR # Using constant
+    myPart.rotation = PART_ROTATION # Defined in modules\parameters.py
+    myPart.scaleFactor = PART_SCALE_FACTOR # Defined in modules\parameters.py
     myPart.dropToPlatform(5) # Adjust drop height as needed
+
     return myPart
 
 def load_supported_stl(model_name: str) -> Part:
@@ -65,9 +67,10 @@ def load_supported_stl(model_name: str) -> Part:
     supported_part.setGeometry(str(supported_stl_path), fixGeometry=True)
     # Apply rotation and scale factor also to supported parts if needed,
     # assuming they might be positioned differently or need scaling.
-    supported_part.rotation = PART_ROTATION
-    supported_part.scaleFactor = PART_SCALE_FACTOR
+    supported_part.rotation = PART_ROTATION # Defined in modules\parameters.py
+    supported_part.scaleFactor = PART_SCALE_FACTOR # Defined in modules\parameters.py
     supported_part.dropToPlatform() # Adjust as needed for your specific STL positioning
+
     return supported_part
 
 def generate_pyslm_supports(myPart: Part) -> (list, trimesh.Trimesh):
@@ -78,7 +81,7 @@ def generate_pyslm_supports(myPart: Part) -> (list, trimesh.Trimesh):
     """
     print("\n--- Block 3: Creating PySLM Supports ---")
     overhangMesh = pyslm.support.getOverhangMesh(myPart, OVERHANG_ANGLE, splitMesh=False, useConnectivity=True)
-    overhangMesh.visual.face_colors = [254.0, 0., 0., 254] # Red color for overhangs
+    overhangMesh.visual.face_colors = [254., 0., 0., 254] # Red color for overhangs
 
     supportGenerator = get_pyslm_support_generator()
 
@@ -133,6 +136,7 @@ def export_supported_stl(myPart: Part, mesh_supports: list, output_folder: pathl
         print(f"Error saving the combined STL file: {e}")
 
 # --- Core Pipeline Functions ---
+
 
 def run_original_stl_to_supported_stl(model_name: str, output_root_folder: pathlib.Path, current_datetime_str: str):
     """
@@ -234,7 +238,7 @@ def run_supported_stl_to_dxf_pipeline(model_name: str, output_root_folder: pathl
     if start_stage <= 1:
         print("\n--- Starting Stage 1 of 2-5 Pipeline: Slice Supported STL to Raw DXFs ---")
         try:
-            # Call Block 2: Load Supported STL
+        # Call Block 2: Load Supported STL
             supported_part = load_supported_stl(model_name)
         except FileNotFoundError as e:
             print(e)
@@ -267,6 +271,7 @@ def run_supported_stl_to_dxf_pipeline(model_name: str, output_root_folder: pathl
             model_name,
             LAYER_THICKNESS
         )
+
     print(f"Pipeline 2-5 for '{model_name}' completed.")
 
 
@@ -282,7 +287,7 @@ if __name__ == "__main__":
 
     model_name = sys.argv[1]
     pipeline_type = sys.argv[2]
-    start_stage = 1 # Default for DXF pipelines
+    start_stage = 1 
 
     if len(sys.argv) == 4:
         try:
