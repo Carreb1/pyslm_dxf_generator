@@ -8,7 +8,7 @@ OVERHANG_ANGLE = 55  # [deg] - Overhang angle for support generation.
 LAYER_THICKNESS = 0.03 # [mm] - Thickness of each sliced layer.
 
 # --- PART TRANSFORMATION PARAMETERS ---
-PART_ROTATION = [30, 45, 0] # [deg] - Rotation of the part around X, Y, Z axes.
+PART_ROTATION = [0, 0, 0] # [deg] - Rotation of the part around X, Y, Z axes.
 PART_SCALE_FACTOR = 1.0 # Multiplicative factor to adjust part size (e.g., 1.0 for original).
 
 # --- HATCHING PARAMETERS (Block 5 Slicing) ---
@@ -75,5 +75,5 @@ def get_pyslm_support_generator():
     supportGenerator.supportTeethBottomLength = 0.3 # [mm] - Length of support teeth at the bottom.
 
     supportGenerator.splineSimplificationFactor = 10 # Factor for spline simplification.
-    supportGenerator.gridSpacing = [.5, .5] # [mm, mm] - Spacing of the support grid in X and Y.
+    supportGenerator.gridSpacing = [1.5, 1.5] # [mm, mm] - Spacing of the support grid in X and Y.
     return supportGenerator

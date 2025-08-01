@@ -175,7 +175,7 @@ def run_original_stl_to_dxf_pipeline(model_name: str, output_root_folder: pathli
     if start_stage <= 1:
         print("\n--- Starting Stage 1 of 1-3-5 Pipeline: Generate Supports and Raw DXFs ---")
         try:
-            # Call Block 1: Load Original STL
+        # Call Block 1: Load Original STL
             myPart = load_original_stl(model_name)
         except FileNotFoundError as e:
             print(e)
