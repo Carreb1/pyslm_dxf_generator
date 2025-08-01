@@ -4,7 +4,7 @@ Este repositório contém um conjunto de scripts Python projetados para automati
 
 ## Estrutura do Projeto
 
-A estrutura de pastas foi organizada para facilitar a localização e edição dos diferentes componentes do pipeline:
+A estrutura de pastas relevantes a esse código foi organizada para facilitar a localização e edição dos diferentes componentes do pipeline:
 
 ```
 your_project_root/
@@ -44,9 +44,9 @@ Este módulo é dedicado a armazenar todas as constantes e parâmetros que você
 
 ### `modules/geometry_processing.py`
 
-Este módulo funciona como uma biblioteca de utilitários, contendo as funções que realizam o trabalho pesado de processamento de geometria e conversão de arquivos. Ele é projetado para ser "agnóstico" em relação aos pipelines, o que significa que suas funções podem ser reutilizadas em diferentes fluxos de trabalho.
+Este módulo funciona como uma biblioteca de utilitários, contendo as funções que realizam o trabalho pesado de processamento de geometria e conversão de arquivos.
 
-* `export_layer_to_dxf()`: Uma função fundamental que pega uma camada do PySLM e a salva como um arquivo DXF.
+* `export_layer_to_dxf()`: Uma função que pega uma camada do PySLM e a salva como um arquivo DXF.
 * `get_line_segments_from_dxf()`: Lê um arquivo DXF e extrai todas as entidades de linha, polilinha, etc.
 * `create_simplified_dxf_for_laser()`: Simplifica a geometria de um DXF para torná-lo mais compatível com máquinas a laser ou outras máquinas de manufatura.
 * `convert_dxf_to_lines_only_machine_format()`: Converte a geometria do DXF para um formato de texto simplificado, específico para a máquina.
@@ -66,7 +66,7 @@ python unified_blocked.py <model_name> <pipeline_type> [start_stage_for_dxf_pipe
 
 * `<model_name>`: O nome base do seu arquivo STL (ex: `Palet`).
 * `<pipeline_type>`: O fluxo de trabalho a ser executado (`1-3-4`, `1-3-5`, ou `2-5`).
-* `[start_stage_for_dxf_pipelines]`: (Opcional) Permite reiniciar um pipeline de DXF a partir de um estágio específico (`1`, `2` ou `3`).
+* `[start_stage_for_dxf_pipelines]`: (Opcional, em casa de vazio se presume 1) Permite reiniciar um pipeline de DXF (Block 5) a partir de um estágio específico (`1`, `2` ou `3`).
 
 **Exemplos**:
 
